@@ -1,0 +1,20 @@
+public class TestFramework {
+
+
+    CommonFunctions commonFunctionsObj =new CommonFunctions();
+
+
+
+    @Before
+    public void  beforeTest()throws Exception{
+        commonFunctionsObj.openBrowser();
+        ExcelUtils.setExcelFile("C:\\Users\\narayanasamy\\IdeaProjects\\RegAutomationFramework\\src\\main\\resources\\testData\\RegTestData.xlsx","sheet1");
+
+    }
+    @org.junit.Before
+    public void afterTest(){
+        commonFunctionsObj.closebrowser();
+
+    }
+
+}
