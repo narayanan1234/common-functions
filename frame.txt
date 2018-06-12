@@ -1,0 +1,68 @@
+public class CommonFunctions {
+
+     public static WebDriver driver;
+     public void  openBrowser()throws Exception
+    {
+
+        String browserType = getPropertyValue("browser").toLowerCase();
+
+        int deviceWidth = Integer.parseInt(getPropertyValue("deviceWidth"));
+        int deviceHeight = Integer.parseInt(getPropertyValue("deviceHeight"));
+        switch (browserType)
+        {
+            case"chrome":
+                System.setProperty("webdriver.chrome.driver","C:\\Users\\narayanasamy\\IdeaProjects\\RegAutomationFramework\\src\\main\\resources\\chromedriver.exe");
+                driver= new ChromeDriver();
+
+                Dimension dimension = new Dimension(deviceWidth,deviceHeight);
+            driver.manage().window().setSize(dimension);
+            break;
+
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver","C:\\Users\\narayanasamy\\IdeaProjects\\RegAutomationFramework\\src\\main\\resources\\geckodriver.exe");
+                driver=new FirefoxDriver();
+                break;
+
+
+
+        }
+
+
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\narayanasamy\\IdeaProjects\\RegAutomationFramework\\src\\main\\resources\\chromedriver.exe");
+        driver = new ChromeDriver();
+
+    }
+
+    public  void closebrowser() {
+         driver.quit();
+     }
+
+
+     ;public String getPropertyValue(String key) throws Exception {
+
+
+
+         FileInputStream inputStream = new FileInputStream("C:\\Users\\narayanasamy\\IdeaProjects\\RegAutomationFramework\\src\\main\\resources\\testData\\config.properties");
+
+         Properties properties = new Properties();
+         properties.load(inputStream);
+
+         String value = properties.getProperty(key);
+         return value;
+     }
+
+
+     public void waitTime(int time){
+
+        driver.manage().timeouts().implicitlyWait(time,TimeUnit.SECONDS);
+
+
+    }
+
+
+
+
+
+
+
+}
